@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Syllabus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #e94560;
+            --light: #f1f1f1;
+            --text: #2d3436;
+            --border: #dfe6e9;
+            --highlight: #ffeaa7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef3 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .course-code {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            letter-spacing: 2px;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        .instructor-info {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .instructor-info p {
+            margin: 5px 0;
+            opacity: 0.95;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+
+        .nav-menu {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+
+        .nav-menu h3 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin: 12px 0;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-menu a:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .nav-menu a::before {
+            content: '▸';
+            margin-right: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-menu a:hover::before {
+            opacity: 1;
+        }
+
+        .content-area {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding-top: 20px;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin: 25px 0 15px 0;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .section ul {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .section li {
+            margin: 10px 0;
+            line-height: 1.7;
+        }
+
+        .section a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-bottom 0.3s ease;
+        }
+
+        .section a:hover {
+            border-bottom: 1px solid var(--accent);
+        }
+
+        .section li em {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #636e72;
+            font-style: italic;
+        }
+
+        .section li strong {
+            color: var(--secondary);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--highlight) 0%, #fff9e6 100%);
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        .schedule-table thead {
+            background: var(--primary);
+            color: white;
+        }
+
+        .schedule-table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .schedule-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .schedule-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .grade-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 20px;
+            margin: 10px 0;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .grade-item:hover {
+            border-color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .grade-item span:last-child {
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        @media (max-width: 968px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Causal Inference and Econometrics</h1>
+            <div class="course-code">ECON 501 • Fall 2026</div>
+            <div class="instructor-info">
+                <p><strong>Instructor:</strong> [Instructor Name]</p>
+                <p><strong>Email:</strong> [<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="eb8285989f999e889f8499ab9e85829d8e9998829f92c58e8f9e">[email&#160;protected]</a>]</p>
+                <p><strong>Office Hours:</strong> [To be announced]</p>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <aside class="sidebar">
+                <nav class="nav-menu">
+                    <h3>Syllabus</h3>
+                    <ul>
+                        <li><a href="#overview">Course Overview</a></li>
+                        <li><a href="#references">Main References</a></li>
+                        <li><a href="#topic1">1. Research Design & Causality</a></li>
+                        <li><a href="#topic2">2. Experiments</a></li>
+                        <li><a href="#topic3">3. Selection on Observables</a></li>
+                        <li><a href="#topic4">4. Difference-in-Differences</a></li>
+                        <li><a href="#topic5">5. Instrumental Variables</a></li>
+                        <li><a href="#topic6">6. Regression Discontinuity</a></li>
+                        <li><a href="#topic7">7. Event Studies & Synthetic Control</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <main class="content-area">
+                <section id="overview" class="section">
+                    <h2>Course Overview</h2>
+                    <p>This course provides a comprehensive introduction to modern methods in causal inference and applied econometrics. Students will learn the fundamental approaches to identifying causal effects in observational and experimental data, with emphasis on practical applications in economics and social sciences.</p>
+                    
+                    <div class="highlight-box">
+                        <strong>Prerequisites:</strong> Intermediate econometrics, statistics, and familiarity with regression analysis.
+                    </div>
+
+                    <p>The course covers key identification strategies including randomized experiments, difference-in-differences, instrumental variables, regression discontinuity designs, and synthetic control methods. Each topic combines theoretical foundations with empirical applications from leading economic research.</p>
+                </section>
+
+                <section id="references" class="section">
+                    <h2>Main Theoretical References</h2>
+                    <p>The following textbooks serve as the primary theoretical foundations for this course:</p>
+                    <ul>
+                        <li><strong>[MHE]</strong> Angrist, J.D., and Pischke, J.S. (2009). <em>"Mostly Harmless Econometrics"</em>, Princeton University Press</li>
+                        <li><strong>[MT]</strong> Cunningham, S. (2021). <em>"Causal Inference: the Mixtape"</em>, Available at: <a href="https://mixtape.scunning.com/" target="_blank">https://mixtape.scunning.com/</a></li>
+                        <li><strong>[TE]</strong> Huntington-Klein, N. (2022). <em>"The Effect, An Introduction to Research Design and Causality"</em>, Available at: <a href="https://theeffectbook.net/" target="_blank">https://theeffectbook.net/</a></li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <strong>Note:</strong> Two of the main references (MT and TE) are freely available online at the links provided.
+                    </div>
+                </section>
+
+                <section id="topic1" class="section">
+                    <h2>1. Research Design and Causality</h2>
+                    
+                    <h3>Core Readings</h3>
+                    <ul>
+                        <li>MHE - <a href="MHE_Chapter_2.html" target="_blank">Chapter 2</a>, <a href="MHE_Chapter_3.html" target="_blank">Chapter 3</a></li>
+                        <li>MT - <a href="https://mixtape.scunning.com/04-potential_outcomes" target="_blank">Chapter 4</a></li>
+                    </ul>
+                </section>
+
+                <section id="topic2" class="section">
+                    <h2>2. Experiments</h2>
+                    
+                    <h3>Core Readings</h3>
+                    <ul>
+                        <li>MHE - <a href="MHE_Chapter_2.html" target="_blank">Chapter 2</a></li>
+                        <li>MT - <a href="https://mixtape.scunning.com/04-potential_outcomes" target="_blank">Chapter 4</a></li>
+                        <li>TE - Chapter [TBD]</li>
+                        <li><a href="https://www.sciencedirect.com/science/article/abs/pii/S1573447107040612" target="_blank">Duflo, E., Glennerster, R. and Kremer, M. (2008)</a>. "Using Randomization in Development Economics Research: a Toolkit." In T.P. Shulz and J. Strauss (eds.) <em>Handbook of Development Economics</em>, Vol. 4, Amsterdam, Elsevier</li>
+                        <li><a href="https://www.mdrc.org/work/publications/core-analytics-randomized-experiments-social-research" target="_blank">Bloom, H.S. (2006)</a>. "The Core Analytics of Randomized Experiments for Social Research." MDRC Working Papers on Research Methodology</li>
+                        <li><a href="https://www.annualreviews.org/doi/10.1146/annurev-economics-091622-010157" target="_blank">Stancheva, S. (2022)</a>. "How to Run Surveys: A guide to creating your identifying variation and revealing the invisible." <em>Annual Review of Economics</em>, 15(1): 205-234</li>
+                    </ul>
+
+                    <h3>Empirical Applications</h3>
+                    <ul>
+                        <li><strong><a href="https://academic.oup.com/qje/article-abstract/126/4/1709/1922509" target="_blank">Baird, S., McIntosh, C., and Özler, B. (2011).</a></strong> "Cash or Condition? Evidence from a Cash Transfer Experiment." <em>The Quarterly Journal of Economics</em>, 126(4): 1709-1753
+                            <br><em>Randomized experiment in Malawi comparing conditional (CCT) and unconditional (UCT) cash transfers for adolescent girls. Finds CCT more effective for school enrollment but UCT better for reducing teen pregnancy and marriage, revealing important trade-offs in program design.</em>
+                        </li>
+                        <li><strong><a href="https://academic.oup.com/qje/article/133/3/1597/4828342" target="_blank">Fowlie, M., Greenstone, M., Wolfram, C. (2018).</a></strong> "Do Energy Efficiency Investments Deliver? Evidence from the Weatherization Assistance Program." <em>The Quarterly Journal of Economics</em>, 133(3): 1597-1644
+                            <br><em>Experimental evaluation of ~30,000 households in the nation's largest residential energy efficiency program. Finds actual energy savings were only half of engineering model projections, and costs exceeded benefits with a negative return of -7.8% annually.</em>
+                        </li>
+                        <li><strong><a href="https://academic.oup.com/qje/article-abstract/138/1/151/6670730" target="_blank">Alan, S., Corekcioglu, G., Sutter, M. (2023).</a></strong> "Improving Workplace Climate in Large Corporations: A Clustered Randomized Intervention." <em>The Quarterly Journal of Economics</em>, 138(1): 151-203
+                            <br><em>Cluster-randomized experiment testing behavioral interventions to improve workplace climate in a large corporation, examining effects on cooperation and organizational culture.</em>
+                        </li>
+                    </ul>
+                </section>
+
+                <section id="topic3" class="section">
+                    <h2>3. Selection on Observables</h2>
+                    
+                    <h3>Core Readings</h3>
+                    <ul>
+                        <li>MHE - <a href="MHE_Chapter_3.html" target="_blank">Chapter 3</a></li>
+                        <li>MT - <a href="https://mixtape.scunning.com/05-matching_and_subclassification" target="_blank">Chapter 5</a></li>
+                        <li>TE - <a href="https://theeffectbook.net/ch-Matching.html" target="_blank">Chapter 14</a></li>
+                        <li><a href="https://www.iza.org/publications/dp/1588/some-practical-guidance-for-the-implementation-of-propensity-score-matching" target="_blank">Caliendo, M., and Kopeinig, S. (2005)</a>. "Some Practical Guidance for the Implementation of Propensity Score Matching." IZA DP No. 1588</li>
+                    </ul>
+
+                    <h3>Empirical Applications</h3>
+                    <ul>
+                        <li><a href="https://www.sciencedirect.com/science/article/abs/pii/S0047272710001830" target="_blank">Caliendo, M., and Kunn, S. (2011)</a>. "Start-up subsidies for the unemployed: Long-term evidence and heterogeneity." <em>Journal of Public Economics</em>, 95: 311-331</li>
+                    </ul>
+                </section>
+
+                <section id="topic4" class="section">
+                    <h2>4. Difference-in-Differences</h2>
+                    
+                    <h3>Core Readings</h3>
+                    <ul>
+                        <li>MHE - <a href="MHE_Chapter_5.html" target="_blank">Chapter 5</a></li>
+                        <li>MT - <a href="https://mixtape.scunning.com/08-panel_data" target="_blank">Chapter 8</a></li>
+                        <li>TE - <a href="https://theeffectbook.net/ch-DifferenceinDifference.html" target="_blank">Chapter 18</a></li>
+                    </ul>
+
+                    <h3>Empirical Applications</h3>
+                    <ul>
+                        <li><strong><a href="https://academic.oup.com/qje/article-abstract/123/3/1251/1928174" target="_blank">Qian, N. (2008).</a></strong> "Missing Women and the Price of Tea in China: The Effect of Sex-Specific Earnings on Sex Imbalance." <em>Quarterly Journal of Economics</em>, 123(3): 1251-1285
+                            <br><em>Uses post-Mao agricultural reforms in China to study how sex-specific income affects child survival and education. Finds that increasing female income improves girls' survival rates and education, while increasing male income has the opposite effect, challenging unitary household models.</em>
+                        </li>
+                        <li><strong><a href="https://www.aeaweb.org/articles?id=10.1257/aer.91.4.795" target="_blank">Duflo, E. (2001).</a></strong> "Schooling and Labor Market Consequences of School Construction in Indonesia: Evidence from an Unusual Policy Experiment." <em>American Economic Review</em>, 91(4): 795-813
+                            <br><em>Exploits Indonesia's massive school construction program (1973-1979) to estimate returns to education. Finds each additional school per 1,000 children led to 0.12-0.19 more years of education and 1.5-5.8% higher wages.</em>
+                        </li>
+                        <li><strong><a href="https://www.aeaweb.org/articles?id=10.1257/app.20150213" target="_blank">Ebenstein, A., Lavy, V., and Roth, S. (2016).</a></strong> "The Long-Run Economic Consequences of High-Stakes Examinations: Evidence from Transitory Variation in Pollution." <em>American Economic Journal: Applied Economics</em>, 8(4): 36-65
+                            <br><em>Uses daily variation in air pollution on high school matriculation exam dates in Israel to estimate long-run effects on university outcomes and earnings. Finds pollution-induced test score reductions have lasting impacts on educational attainment and labor market outcomes.</em>
+                        </li>
+                        <li><strong><a href="https://www.sciencedirect.com/science/article/abs/pii/S0047272717301792" target="_blank">Arteaga, C. (2018).</a></strong> "The effect of human capital on earnings: Evidence from a reform at Colombia's top university." <em>Journal of Public Economics</em>, 157: 212-225
+                            <br><em>Studies a reform at Universidad de los Andes that changed admission standards, using difference-in-differences to estimate returns to college quality and selectivity on earnings.</em>
+                        </li>
+                    </ul>
+                </section>
+
+                <section id="topic5" class="section">
+                    <h2>5. Instrumental Variables</h2>
+                    
+                    <h3>Core Readings</h3>
+                    <ul>
+                        <li>MHE - <a href="MHE_Chapter_4.html" target="_blank">Chapter 4</a></li>
+                        <li>MT - <a href="https://mixtape.scunning.com/07-instrumental_variables" target="_blank">Chapter 7</a></li>
+                        <li>TE - <a href="https://theeffectbook.net/ch-InstrumentalVariables.html" target="_blank">Chapter 19</a></li>
+                    </ul>
+
+                    <h3>Empirical Applications</h3>
+                    <ul>
+                        <li><strong><a href="https://www.aeaweb.org/articles?id=10.1257/aer.88.3.450" target="_blank">Angrist, J.D., and Evans, W.N. (1998).</a></strong> "Children and their parents' labor supply: Evidence from exogenous variation in family size." <em>American Economic Review</em>, 88(3): 450-477
+                            <br><em>Uses sex composition of first two children as an instrument for family size to estimate effects on parental labor supply. Finds having a third child significantly reduces mothers' labor supply, with effects larger for less-educated women, but no effect on fathers' labor supply.</em>
+                        </li>
+                        <li><strong><a href="https://academic.oup.com/qje/article/136/4/2533/6261993" target="_blank">Guriev, S., Melnikov, N., and Zhuravskaya, E. (2021).</a></strong> "3G Internet and Confidence in Government." <em>Quarterly Journal of Economics</em>, 136(4): 2533-2613
+                            <br><em>Exploits the staggered rollout of 3G mobile internet across Russia to study effects on political attitudes. Finds 3G access decreases confidence in government and trust in Putin, particularly in areas with alternative sources of information.</em>
+                        </li>
+                        <li><strong><a href="https://academic.oup.com/qje/article/130/2/759/2330287" target="_blank">Aizer, A., and Doyle, J.J. (2015).</a></strong> "Juvenile Incarceration, Human Capital, and Future Crime: Evidence from Randomly Assigned Judges." <em>The Quarterly Journal of Economics</em>, 130(2): 759-803
+                            <br><em>Uses judge assignment as an instrument for juvenile incarceration to estimate its causal effects. Finds incarceration decreases high school completion and increases adult incarceration, challenging the assumption that detention reduces future crime.</em>
+                        </li>
+                    </ul>
+                </section>
+
+                <section id="topic6" class="section">
+                    <h2>6. Regression Discontinuity</h2>
+                    
+                    <h3>Core Readings</h3>
+                    <ul>
+                        <li>MHE - <a href="MHE_Chapter_6.html" target="_blank">Chapter 6</a></li>
+                        <li>MT - <a href="https://mixtape.scunning.com/06-regression_discontinuity" target="_blank">Chapter 6</a></li>
+                        <li>TE - <a href="https://theeffectbook.net/ch-RegressionDiscontinuity.html" target="_blank">Chapter 20</a></li>
+                        <li><a href="https://mdcattaneo.github.io/books/Cattaneo-Idrobo-Titiunik_2020_CUP.pdf" target="_blank">Cattaneo, M., Idrobo, N., and Titiunik, R. (2019)</a>. "A Practical Introduction to Regression Discontinuity Designs: Foundations."</li>
+                        <li><a href="https://mdcattaneo.github.io/books/Cattaneo-Idrobo-Titiunik_2023_CUP.pdf" target="_blank">Cattaneo, M., Idrobo, N., and Titiunik, R. (2023)</a>. "A Practical Introduction to Regression Discontinuity Designs: Extensions."</li>
+                        <li><a href="https://www.aeaweb.org/articles?id=10.1257/jel.48.2.281" target="_blank">Lee, D.S., and Lemieux, T. (2010)</a>. "Regression Discontinuity Designs in Economics." <em>Journal of Economic Literature</em>, 48(2): 281-355</li>
+                    </ul>
+
+                    <h3>Empirical Applications</h3>
+                    <ul>
+                        <li><strong><a href="https://direct.mit.edu/rest/article-abstract/88/1/171/57543/Identifying-Class-Size-Effects-in-Developing" target="_blank">Urquiola, M. (2006).</a></strong> "Identifying Class Size Effects in Developing Countries: Evidence from Rural Bolivia." <em>Review of Economics and Statistics</em>, 88(1): 171-177 (Note: the working paper version of 2003 is better)
+                            <br><em>Uses class size cutoff rules in rural Bolivian schools as a regression discontinuity design to estimate effects of class size on student achievement in developing countries.</em>
+                        </li>
+                        <li><strong><a href="https://www.aeaweb.org/articles?id=10.1257/aer.20150355" target="_blank">Pinotti, P. (2017).</a></strong> "Clicking on Heaven's Door: The effect of Immigrant Legalization on Crime." <em>American Economic Review</em>, 107(1): 138-168
+                            <br><em>Exploits Italy's electronic residence permit application system as an RDD. Fixed quotas processed on first-come, first-served basis create sharp cutoff. Finds legalization reduces immigrant crime rate by 0.6 percentage points (from 1.1% baseline), demonstrating importance of legal status.</em>
+                        </li>
+                        <li><strong><a href="https://www.journals.uchicago.edu/doi/10.1086/705718" target="_blank">Fort, M., Ichino, A., and Zanella, G. (2020).</a></strong> "Cognitive and Noncognitive Costs of Day Care at Age 0-2 for Children in Advantaged Families." <em>Journal of Political Economy</em>, 128(1): 158-205
+                            <br><em>Uses lottery-based assignment to day care facilities in Bologna as RDD to study effects of early childcare on child development outcomes in advantaged families.</em>
+                        </li>
+                        <li><strong><a href="https://academic.oup.com/qje/article-abstract/123/3/951/1930860" target="_blank">Greenstone, M., and Gallagher, J. (2008).</a></strong> "Does Hazardous Waste Matter? Evidence from the Housing Market and the Superfund Program." <em>Quarterly Journal of Economics</em>, 123(3): 951-1003
+                            <br><em>Uses discontinuity in EPA's Superfund site selection based on hazard ranking scores to estimate housing market impacts of environmental contamination and cleanup.</em>
+                        </li>
+                    </ul>
+                </section>
+
+                <section id="topic7" class="section">
+                    <h2>7. Event Studies and Synthetic Control</h2>
+                    
+                    <h3>Core Readings</h3>
+                    <ul>
+                        <li>MT - <a href="https://mixtape.scunning.com/10-synthetic_control" target="_blank">Chapter 10</a></li>
+                        <li>TE - <a href="https://theeffectbook.net/ch-EventStudies.html" target="_blank">Chapter 17</a></li>
+                    </ul>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight active section in navigation
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.nav-menu a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.background = '';
+                link.style.color = '';
+               
