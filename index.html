@@ -364,7 +364,7 @@
                     
                     <h3>Core Readings</h3>
                     <ul>
-                        <li>MHE - <a href="MHE_Chapter_2.html" target="_blank">Chapter 2</a>, <a href="MHE_Chapter_3.html" target="_blank">Chapter 3</a></li>
+                        <li>MHE - <a href="MHE_Chapter_2.html">Chapter 2</a>, <a href="MHE_Chapter_3.html">Chapter 3</a></li>
                         <li>MT - <a href="https://mixtape.scunning.com/04-potential_outcomes" target="_blank">Chapter 4</a></li>
                     </ul>
                 </section>
@@ -374,7 +374,7 @@
                     
                     <h3>Core Readings</h3>
                     <ul>
-                        <li>MHE - <a href="MHE_Chapter_2.html" target="_blank">Chapter 2</a></li>
+                        <li>MHE - <a href="MHE_Chapter_2.html">Chapter 2</a></li>
                         <li>MT - <a href="https://mixtape.scunning.com/04-potential_outcomes" target="_blank">Chapter 4</a></li>
                         <li>TE - Chapter [TBD]</li>
                         <li><a href="https://www.sciencedirect.com/science/article/abs/pii/S1573447107040612" target="_blank">Duflo, E., Glennerster, R. and Kremer, M. (2008)</a>. "Using Randomization in Development Economics Research: a Toolkit." In T.P. Shulz and J. Strauss (eds.) <em>Handbook of Development Economics</em>, Vol. 4, Amsterdam, Elsevier</li>
@@ -401,7 +401,7 @@
                     
                     <h3>Core Readings</h3>
                     <ul>
-                        <li>MHE - <a href="MHE_Chapter_3.html" target="_blank">Chapter 3</a></li>
+                        <li>MHE - <a href="MHE_Chapter_3.html">Chapter 3</a></li>
                         <li>MT - <a href="https://mixtape.scunning.com/05-matching_and_subclassification" target="_blank">Chapter 5</a></li>
                         <li>TE - <a href="https://theeffectbook.net/ch-Matching.html" target="_blank">Chapter 14</a></li>
                         <li><a href="https://www.iza.org/publications/dp/1588/some-practical-guidance-for-the-implementation-of-propensity-score-matching" target="_blank">Caliendo, M., and Kopeinig, S. (2005)</a>. "Some Practical Guidance for the Implementation of Propensity Score Matching." IZA DP No. 1588</li>
@@ -418,7 +418,7 @@
                     
                     <h3>Core Readings</h3>
                     <ul>
-                        <li>MHE - <a href="MHE_Chapter_5.html" target="_blank">Chapter 5</a></li>
+                        <li>MHE - <a href="MHE_Chapter_5.html">Chapter 5</a></li>
                         <li>MT - <a href="https://mixtape.scunning.com/08-panel_data" target="_blank">Chapter 8</a></li>
                         <li>TE - <a href="https://theeffectbook.net/ch-DifferenceinDifference.html" target="_blank">Chapter 18</a></li>
                     </ul>
@@ -445,7 +445,7 @@
                     
                     <h3>Core Readings</h3>
                     <ul>
-                        <li>MHE - <a href="MHE_Chapter_4.html" target="_blank">Chapter 4</a></li>
+                        <li>MHE - <a href="MHE_Chapter_4.html">Chapter 4</a></li>
                         <li>MT - <a href="https://mixtape.scunning.com/07-instrumental_variables" target="_blank">Chapter 7</a></li>
                         <li>TE - <a href="https://theeffectbook.net/ch-InstrumentalVariables.html" target="_blank">Chapter 19</a></li>
                     </ul>
@@ -469,7 +469,7 @@
                     
                     <h3>Core Readings</h3>
                     <ul>
-                        <li>MHE - <a href="MHE_Chapter_6.html" target="_blank">Chapter 6</a></li>
+                        <li>MHE - <a href="MHE_Chapter_6.html">Chapter 6</a></li>
                         <li>MT - <a href="https://mixtape.scunning.com/06-regression_discontinuity" target="_blank">Chapter 6</a></li>
                         <li>TE - <a href="https://theeffectbook.net/ch-RegressionDiscontinuity.html" target="_blank">Chapter 20</a></li>
                         <li><a href="https://mdcattaneo.github.io/books/Cattaneo-Idrobo-Titiunik_2020_CUP.pdf" target="_blank">Cattaneo, M., Idrobo, N., and Titiunik, R. (2019)</a>. "A Practical Introduction to Regression Discontinuity Designs: Foundations."</li>
@@ -537,6 +537,21 @@
             });
 
             navLinks.forEach(link => {
+                const href = link.getAttribute('href') || '';
+                // reset
                 link.style.background = '';
                 link.style.color = '';
+
+                // highlight only in-page anchors that match the current section
+                if (href.startsWith('#') && href.slice(1) === current) {
+                    link.style.background = 'var(--accent)';
+                    link.style.color = 'white';
+                }
+            });
+        });
+
+        // end of scripts
+    </script>
+</body>
+</html>
                

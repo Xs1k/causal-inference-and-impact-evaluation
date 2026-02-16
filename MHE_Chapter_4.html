@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>MHE — Chapter 4</title>
+    <style>
+        :root{--primary:#1a1a2e;--accent:#e94560}
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:Inter, 'DM Sans', Arial, sans-serif;background:linear-gradient(135deg,#f5f7fa 0%,#e8eef3 100%);color:#2d3436;min-height:100vh}
+        .container{max-width:1200px;margin:28px auto;padding:20px}
+        header{background:linear-gradient(135deg,var(--primary),#16213e);color:#fff;border-radius:12px;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+        .controls{display:flex;gap:8px}
+        .btn{background:#fff;color:var(--primary);padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:600;border:1px solid rgba(0,0,0,0.06);box-shadow:0 6px 18px rgba(2,6,23,0.08)}
+        .viewer-wrap{margin-top:18px;background:#fff;border-radius:12px;box-shadow:0 6px 30px rgba(2,6,23,0.08);overflow:hidden;border:1px solid #e6e9ee;height:78vh;display:flex;flex-direction:column}
+        .viewer-toolbar{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid #f1f2f6;background:linear-gradient(180deg,#fafbfc,#fff)}
+    .pdf-frame{flex:1;background:#222;min-height:0;-webkit-overflow-scrolling:touch}
+        .pdf-frame iframe{width:100%;height:100%;border:0}
+        .notice{padding:12px 16px;font-size:0.95rem;color:#636e72}
+        @media (max-width:720px){.viewer-wrap{height:64vh}.controls{flex-direction:column;align-items:flex-end}}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div>
+                <h1>Mostly Harmless Econometrics — Chapter 4</h1>
+                <div class="meta">Instrumental variables — Embedded viewer</div>
+            </div>
+            <div class="controls">
+                <a class="btn" href="index.html">← Torna al syllabus</a>
+                <a class="btn" href="MHE_Chapter_4.pdf">Apri PDF</a>
+                <a class="btn" href="MHE_Chapter_4.pdf" download>Scarica</a>
+            </div>
+        </header>
+
+        <div class="viewer-wrap" role="region" aria-label="Lettore PDF - Chapter 4">
+            <div class="viewer-toolbar" style="flex-direction:column;align-items:stretch;gap:8px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%">
+                    <div style="display:flex;align-items:center;gap:12px">
+                        <div class="title">Chapter 4 — Instrumental Variables</div>
+                        <div id="page-info" style="font-weight:500;font-size:0.95rem;color:#8a93a3">—</div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:8px">
+                        <button id="btn-prev" class="btn" title="Pagina precedente">◀</button>
+                        <button id="btn-next" class="btn" title="Pagina successiva">▶</button>
+                        <a class="btn" href="MHE_Chapter_4.pdf" download>Scarica</a>
+                    </div>
+                </div>
+
+                <div style="display:flex;align-items:center;gap:12px">
+                    <div style="flex:1">
+                        <div id="progress-bar" style="height:8px;background:#eef2f6;border-radius:6px;overflow:hidden">
+                            <div id="progress-fill" style="width:0%;height:100%;background:linear-gradient(90deg,#e94560,#ff7b7b)"></div>
+                        </div>
+                    </div>
+                    <div id="progress-percent" style="min-width:56px;text-align:right;font-weight:600;color:#16213e">0%</div>
+                </div>
+                <div style="font-size:0.9rem;color:#8a93a3">Se il PDF non si carica, usa "Scarica"</div>
+            </div>
+
+            <div class="pdf-frame">
+                <div id="pdf-container" tabindex="0" style="height:100%;overflow:auto;min-height:0;padding:18px;background:linear-gradient(180deg,#fafafa,#fff);-webkit-overflow-scrolling:touch;touch-action:auto"></div>
+            </div>
+
+            <div class="notice">Scorri per leggere — la barra mostra la percentuale di avanzamento.</div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.worker.min.js';
+        (function(){
+            const url = 'MHE_Chapter_4.pdf';
+            const container = document.getElementById('pdf-container');
+            const progressFill = document.getElementById('progress-fill');
+            const progressPct = document.getElementById('progress-percent');
+            const pageInfo = document.getElementById('page-info');
+            const btnPrev = document.getElementById('btn-prev');
+            const btnNext = document.getElementById('btn-next');
+
+            let pdfDoc = null;
+            let currentPage = 1;
+
+            function renderPage(pageNumber, scale){
+                return pdfDoc.getPage(pageNumber).then(page => {
+                    const viewport = page.getViewport({scale});
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = Math.floor(viewport.width);
+                    canvas.height = Math.floor(viewport.height);
+                    canvas.style.width = '100%';
+                    canvas.style.height = 'auto';
+                    const renderContext = {canvasContext: ctx, viewport};
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'page-wrapper';
+                    wrapper.dataset.pageNumber = pageNumber;
+                    wrapper.style.margin = '12px auto';
+                    wrapper.appendChild(canvas);
+                    container.appendChild(wrapper);
+                    return page.render(renderContext).promise;
+                });
+            }
+
+            function renderAll(scale){
+                container.innerHTML = '';
+                const loading = document.createElement('div');
+                loading.textContent = 'Caricamento PDF...';
+                loading.style.padding = '18px';
+                container.appendChild(loading);
+                const promises = [];
+                for(let p=1;p<=pdfDoc.numPages;p++){
+                    promises.push(renderPage(p, scale));
+                }
+                return Promise.all(promises).then(()=>{
+                    const first = container.querySelector('.page-wrapper');
+                    if(first) first.scrollIntoView();
+                    updateProgress();
+                });
+            }
+
+            function updateProgress(){
+                const scrollTop = container.scrollTop;
+                const maxScroll = container.scrollHeight - container.clientHeight;
+                const pct = maxScroll > 0 ? Math.round((scrollTop / maxScroll) * 100) : 0;
+                progressFill.style.width = pct + '%';
+                progressPct.textContent = pct + '%';
+
+                const middle = scrollTop + container.clientHeight/2;
+                const wrappers = Array.from(container.querySelectorAll('.page-wrapper'));
+                let found = 1;
+                for(const w of wrappers){
+                    const top = w.offsetTop;
+                    const h = w.clientHeight;
+                    if(top <= middle && (top + h) >= middle){
+                        found = Number(w.dataset.pageNumber);
+                        break;
+                    }
+                }
+                currentPage = found;
+                pageInfo.textContent = `${currentPage} / ${pdfDoc.numPages}`;
+            }
+
+            function scrollToPage(n){
+                const el = container.querySelector(`.page-wrapper[data-page-number="${n}"]`);
+                if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+            }
+
+            btnPrev.addEventListener('click', () => { scrollToPage(Math.max(1, currentPage-1)); });
+            btnNext.addEventListener('click', () => { scrollToPage(Math.min(pdfDoc.numPages, currentPage+1)); });
+            container.addEventListener('scroll', () => requestAnimationFrame(updateProgress));
+
+            pdfjsLib.getDocument(url).promise.then(pdf => {
+                pdfDoc = pdf;
+                return pdf.getPage(1).then(p => {
+                    const vp = p.getViewport({scale:1});
+                    const desiredWidth = Math.max(600, container.clientWidth - 40);
+                    const baseScale = desiredWidth / vp.width;
+                    return renderAll(baseScale);
+                });
+            }).catch(err => {
+                container.innerHTML = '<div style="padding:18px;color:#b00020">Impossibile caricare il PDF.</div>';
+                console.error(err);
+            });
+
+            let resizeTimer = null;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    if(!pdfDoc) return;
+                    pdfDoc.getPage(1).then(p => {
+                        const vp = p.getViewport({scale:1});
+                        const desiredWidth = Math.max(400, container.clientWidth - 40);
+                        const baseScale = desiredWidth / vp.width;
+                        renderAll(baseScale);
+                    });
+                }, 250);
+            });
+        })();
+    </script>
+        </div>
+    </div>
+</body>
+</html>
