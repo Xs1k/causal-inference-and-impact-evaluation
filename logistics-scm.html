@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logistics and Supply Chain Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="hub-link">&larr; Tutte le materie</a>
+            <h1>Logistics and Supply Chain Management</h1>
+            <div class="course-code">[CODE] &bull; A.A. 2026/2027</div>
+            <div class="instructor-info">
+                <p><strong>Instructor:</strong> [Instructor Name]</p>
+                <p><strong>Email:</strong> [instructor@university.edu]</p>
+                <p><strong>Office Hours:</strong> [To be announced]</p>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <aside class="sidebar">
+                <nav class="nav-menu">
+                    <h3>Syllabus</h3>
+                    <ul>
+                        <li><a href="#overview">Course Overview</a></li>
+                        <li><a href="#topic1">1. Introduction to Logistics &amp; SCM</a></li>
+                        <li><a href="#topic2">2. Distribution Network Design</a></li>
+                        <li><a href="#topic3">3. Aggregate Planning</a></li>
+                        <li><a href="#topic4">4. Inventory Management</a></li>
+                        <li><a href="#topic5">5. Transportation Planning</a></li>
+                        <li><a href="#topic6">6. Sourcing &amp; Supplier Selection</a></li>
+                        <li><a href="#topic7">7. Demand Forecasting</a></li>
+                        <li><a href="#topic8">8. Supply Chain Coordination</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <main class="content-area">
+                <section id="overview" class="section">
+                    <h2>Course Overview</h2>
+                    <p>The course covers the design, planning, and coordination of logistics systems and supply networks. It combines a managerial view of supply chain strategy with the quantitative models used to support decisions on network configuration, production planning, inventory, transportation, sourcing, and forecasting.</p>
+
+                    <div class="highlight-box">
+                        <strong>Structure:</strong> eight topics, moving from the strategic level (network design) through tactical planning (aggregate planning, inventory, transportation) to coordination across independent supply chain actors.
+                    </div>
+                </section>
+
+                <section id="topic1" class="section">
+                    <h2>1. Introduction to Logistics and Supply Chain Management</h2>
+                    <ul>
+                        <li>The complexity of the supply network</li>
+                        <li>Objectives and sources of uncertainty</li>
+                        <li>Cycle view and push/pull view of the supply chain</li>
+                        <li>Key supply chain drivers and performance metrics: facilities, inventory, transportation, information, sourcing, and pricing</li>
+                    </ul>
+                </section>
+
+                <section id="topic2" class="section">
+                    <h2>2. Distribution Network Design</h2>
+                    <ul>
+                        <li>Factors influencing network configuration</li>
+                        <li>A structured framework for network design decisions</li>
+                        <li>Models for supply network design and facility location</li>
+                    </ul>
+                </section>
+
+                <section id="topic3" class="section">
+                    <h2>3. Aggregate Planning</h2>
+                    <ul>
+                        <li>Definition and objectives</li>
+                        <li>Planning strategies</li>
+                        <li>Linear programming models</li>
+                        <li>Development of a rough-cut master production schedule</li>
+                    </ul>
+                </section>
+
+                <section id="topic4" class="section">
+                    <h2>4. Inventory Management</h2>
+
+                    <h3>Economies of scale</h3>
+                    <ul>
+                        <li>EOQ model</li>
+                        <li>Order aggregation</li>
+                        <li>Discount policies</li>
+                    </ul>
+
+                    <h3>Managing uncertainty</h3>
+                    <ul>
+                        <li>Safety stock</li>
+                        <li>Periodic vs. continuous review</li>
+                        <li>Risk pooling</li>
+                    </ul>
+                </section>
+
+                <section id="topic5" class="section">
+                    <h2>5. Transportation Planning</h2>
+                    <ul>
+                        <li>Transport modes and their characteristics</li>
+                        <li>Key trade-offs and decision criteria</li>
+                        <li>Optimization models for transportation problems</li>
+                    </ul>
+                </section>
+
+                <section id="topic6" class="section">
+                    <h2>6. Sourcing and Supplier Selection</h2>
+                    <ul>
+                        <li>Make-or-buy decisions</li>
+                        <li>Multicriteria approaches for supplier evaluation and selection</li>
+                    </ul>
+                </section>
+
+                <section id="topic7" class="section">
+                    <h2>7. Demand Forecasting</h2>
+                    <ul>
+                        <li>Forecast components and methods</li>
+                        <li>Time series forecasting techniques</li>
+                    </ul>
+                </section>
+
+                <section id="topic8" class="section">
+                    <h2>8. Supply Chain Coordination</h2>
+                    <ul>
+                        <li>The value of information sharing</li>
+                        <li>The bullwhip effect</li>
+                        <li>Barriers to coordination and managerial levers to enhance collaboration across the supply chain</li>
+                    </ul>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.nav-menu a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                if (window.pageYOffset >= (section.offsetTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.background = '';
+                link.style.color = '';
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.background = 'var(--accent)';
+                    link.style.color = 'white';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
